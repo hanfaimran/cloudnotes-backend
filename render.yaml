@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: cloudnotes-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:create_app() -c gunicorn_config.py
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cloudnotes-db
+          property: connectionString
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+databases:
+  - name: cloudnotes-db
+    databaseName: cloudnotes
+    plan: free
