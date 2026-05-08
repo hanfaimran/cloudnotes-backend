@@ -9,7 +9,11 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    CORS(app, supports_credentials=True, origins=["http://localhost:3000", "http://127.0.0.1:5500", "null"])
+    CORS(app, supports_credentials=True, origins=[
+    "http://localhost:3000",
+    "http://127.0.0.1:5500",
+    "https://heroic-mousse-f1e162.netlify.app"
+])
     db.init_app(app)
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
