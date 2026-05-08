@@ -27,7 +27,10 @@ def signup():
     db.session.commit()
 
     session["user_id"] = user.id
-    return jsonify({"message": "Account created", "user": user.to_dict()}), 201
+    session.permanent = True
+
+    response = jsonify({"message": "Account created", "user": user.to_dict()})
+    return response, 201
 
 
 @auth_bp.route("/login", methods=["POST"])
@@ -41,7 +44,10 @@ def login():
         return jsonify({"error": "Invalid email or password"}), 401
 
     session["user_id"] = user.id
-    return jsonify({"message": "Logged in", "user": user.to_dict()}), 200
+    session.permanent = True
+
+    response = jsonify({"message": "Logged in", "user": user.to_dict()})
+    return response, 200
 
 
 @auth_bp.route("/logout", methods=["POST"])
