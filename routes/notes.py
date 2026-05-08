@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify
 from extensions import db
 from models.models import Note
 from utils.cloudinary_helper import upload_file_to_cloudinary
