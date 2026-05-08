@@ -8,7 +8,9 @@ notes_bp = Blueprint("notes", __name__)
 
 
 def get_current_user_id():
-    return session.get("user_id")
+    from routes.auth import tokens
+    token = request.headers.get("Authorization", "").replace("Bearer ", "")
+    return tokens.get(token)
 
 
 @notes_bp.route("/", methods=["GET"])
