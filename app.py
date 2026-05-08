@@ -13,6 +13,7 @@ def create_app():
     "http://localhost:3000",
     "http://127.0.0.1:5500",
     "https://heroic-mousse-f1e162.netlify.app"
+    "https://stickynotesz.netlify.app"
 ])
     db.init_app(app)
 
